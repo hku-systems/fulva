@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package RAMCloud.ProtoBuf;
+import "Tablets.proto";
+
+// Message used by coordinator and recoveryMaster during recovery.
+// At the beginning of a recovery, coordinator send a recoveryPartition
+// to each recoveryMaster. When recoveryMaster finishes its job, it fills
+// in some fields of recoveryPartition, and sends it back to coordinator.
+// Same message goes both directions during a recovery.
+message MigrationPartition {
+
+  /// The tablets.
+  repeated Tablets.Tablet tablet = 1;
+
+}
